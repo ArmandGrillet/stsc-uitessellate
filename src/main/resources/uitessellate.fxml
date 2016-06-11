@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uitessellate.Controller">
+   <children>
+      <Button layoutX="523.0" layoutY="359.0" mnemonicParsing="false" onAction="#tessellate" text="Tessellate" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <Button layoutX="177.0" layoutY="679.0" mnemonicParsing="false" onAction="#loadDataset" text="Load dataset" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="174.0" />
+      <TextField fx:id="maxField" alignment="CENTER_RIGHT" layoutX="678.0" layoutY="679.0" prefHeight="27.0" prefWidth="40.0" text="20" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="673.0" />
+      <ImageView fx:id="dataset" fitHeight="600.0" fitWidth="600.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <image>
+            <Image url="@logo.png" />
+         </image></ImageView>
+      <ImageView fx:id="clusters" fitHeight="600.0" fitWidth="600.0" layoutX="436.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <image>
+            <Image url="@logo.png" />
+         </image></ImageView>
+      <Line endX="425.0" endY="615.0" layoutX="215.0" startX="425.0" startY="14.0" />
+      <ChoiceBox fx:id="selectDataset" layoutX="14.0" layoutY="679.0" prefWidth="150.0" value="Select dataset" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+          <items>
+          <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Select dataset" />
+              <String fx:value="0.csv" />
+              <String fx:value="1.csv" />
+              <String fx:value="2.csv" />
+          </FXCollections>
+      </items>
+  </ChoiceBox>
+      <Label layoutX="452.0" layoutY="684.0" text="Max number of observations in tile:" AnchorPane.leftAnchor="452.0" />
+   </children>
+</AnchorPane>
