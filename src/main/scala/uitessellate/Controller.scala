@@ -60,7 +60,7 @@ class Controller(private val root: AnchorPane, private val selectDataset: Choice
         }
 
         if (ready) {
-            val tessellations = stsc.tessellate(displayedDataset, maxObservations)
+            val tessellations = TessellationTree.createWithMaxObservations(displayedDataset, maxObservations, 0).leafsAsDenseMatrix()
 
             val f = Figure()
             f.visible = false
@@ -70,10 +70,10 @@ class Controller(private val root: AnchorPane, private val selectDataset: Choice
             p.xlim(min(displayedDataset(::, 0)) - 2, max(displayedDataset(::, 0)) + 2)
             p.ylim(min(displayedDataset(::, 1)) - 2, max(displayedDataset(::, 1)) + 2)
             p.title = "Tessellation tree"
-            p += scatter(displayedDataset(::, 0), displayedDataset(::, 1), {(_:Int) => 0.01}, {(pos:Int) => Color.BLACK}) // Display the observations.
+            p += scatter(displayedDataset(::, 0), displayedDataset(::, 1), {(_:Int) => 0.05}, {(pos:Int) => Color.BLACK}) // Display the observations.
 
             for (i <- 0 until tessellations.rows) {
-                var (modifiableMinX, modifiableMaxX, modifiableMinY, modifiableMaxY) = (tessellations(i, 0), tessellations(i, 1), tessellations(i, 2), tessellations(i, 3))
+                var (modifiableMinX, modifiableMinY, modifiableMaxX, modifiableMaxY) = (tessellations(i, 0), tessellations(i, 1), tessellations(i, 2), tessellations(i, 3))
                 if (modifiableMinX == scala.Double.NegativeInfinity) {
                     modifiableMinX = min(displayedDataset(::, 0)) - 2
                 }
@@ -145,7 +145,7 @@ class Controller(private val root: AnchorPane, private val selectDataset: Choice
         f.height = dataset.getBoundsInParent().getHeight().toInt
         val p = f.subplot(0)
         p.title = "Dataset"
-        p += scatter(displayedDataset(::, 0), displayedDataset(::, 1), {(_:Int) => 0.01}, {(pos:Int) => Color.BLACK}) // Display the observations.
+        p += scatter(displayedDataset(::, 0), displayedDataset(::, 1), {(_:Int) => 0.05}, {(pos:Int) => Color.BLACK}) // Display the observations.
         dataset.image = SwingFXUtils.toFXImage(imageToFigure(f), null)
     }
 
